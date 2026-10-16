@@ -1,115 +1,123 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Character Counter</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700&display=swap">
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-  <header class="header">
-    <a href="#" class="logo">
-      <img src="./images/logo.png" alt="">
-      <span>Character Counter</span>
-    </a>
+  <div class="container">
+    <header class="header">
+      <a href="./" class="logo">
+        <img src="./images/logo.svg" alt="" width="33" height="40">
+        <span>Character Counter</span>
+      </a>
 
-    <span class="theme-toggle" aria-hidden="true">
-      <img src="./images/summer.png" alt="">
-    </span>
-  </header>
+      <button class="theme-toggle" type="button" aria-label="Switch to light theme">
+        <img src="./images/icon-sun.svg" alt="">
+      </button>
+    </header>
 
-  <main>
-    <section class="hero">
+    <main>
       <h1>Analyze your text in real-time.</h1>
-      <p>Track characters, words, sentences and letter density as you type.</p>
-    </section>
 
-    <section class="counter">
-      <div class="text-input">
-        <label for="text-input">Your text</label>
-        <textarea id="text-input" placeholder="Start typing here..."></textarea>
-      </div>
+      <section class="text-area" aria-label="Text input">
+        <label for="text-input" class="visually-hidden">Enter your text</label>
+        <textarea
+          id="text-input"
+          placeholder="Start typing here… (or paste your text)"
+        >Design is the silent ambassador of your brand. Simplicity is key to effective communication, creating clarity in every interaction. A great design transforms complex ideas into elegant solutions, making them easy to understand. It blends aesthetics and functionality seamlessly.</textarea>
 
-      <div class="options">
-        <label class="checkbox-option">
-          <input type="checkbox" id="exclude-spaces">
-          <span>Exclude spaces</span>
-        </label>
+        <div class="options">
+          <div class="option-group">
+            <label class="checkbox">
+              <input type="checkbox" id="exclude-spaces">
+              Exclude Spaces
+            </label>
 
-        <label class="limit-option" for="character-limit">
-          Character limit
-          <input
-            type="number"
-            id="character-limit"
-            placeholder="e.g. 500"
-            min="1"
-          >
-        </label>
-      </div>
+            <div class="limit-option">
+              <label class="checkbox">
+                <input type="checkbox" id="limit-toggle">
+                Set Character Limit
+              </label>
 
-      <section class="statistics">
-        <article class="stat-card characters-card">
-          <span class="stat-number">00</span>
-          <p>Characters</p>
-        </article>
-
-        <article class="stat-card words-card">
-          <span class="stat-number">00</span>
-          <p>Word count</p>
-        </article>
-
-        <article class="stat-card sentences-card">
-          <span class="stat-number">00</span>
-          <p>Sentence count</p>
-        </article>
-      </section>
-
-      <section class="density">
-        <div class="density-header">
-          <h2>Letter density</h2>
-          <span id="expand-density">See more</span>
-        </div>
-
-        <div class="density-list">
-          <div class="density-row">
-            <span class="density-letter">E</span>
-            <div class="density-bar"><span style="width: 80%"></span></div>
-            <span class="density-count">8</span>
-            <span class="density-percent">32%</span>
+              <label for="character-limit" class="visually-hidden">Character limit</label>
+              <input type="number" id="character-limit" class="limit-input" min="1" inputmode="numeric">
+            </div>
           </div>
 
-          <div class="density-row">
-            <span class="density-letter">A</span>
-            <div class="density-bar"><span style="width: 60%"></span></div>
-            <span class="density-count">6</span>
-            <span class="density-percent">24%</span>
-          </div>
-
-          <div class="density-row">
-            <span class="density-letter">T</span>
-            <div class="density-bar"><span style="width: 40%"></span></div>
-            <span class="density-count">4</span>
-            <span class="density-percent">16%</span>
-          </div>
-
-          <div class="density-row">
-            <span class="density-letter">O</span>
-            <div class="density-bar"><span style="width: 30%"></span></div>
-            <span class="density-count">3</span>
-            <span class="density-percent">12%</span>
-          </div>
-
-          <div class="density-row">
-            <span class="density-letter">R</span>
-            <div class="density-bar"><span style="width: 20%"></span></div>
-            <span class="density-count">2</span>
-            <span class="density-percent">8%</span>
-          </div>
+          <p class="reading-time">
+            Approx. reading time: <span>&lt;1 minute</span>
+          </p>
         </div>
       </section>
-    </section>
-  </main>
+
+      <section aria-label="Text statistics">
+        <ul class="stats">
+          <li class="stat-card stat-card-characters">
+            <p class="stat-number">278</p>
+            <p class="stat-label">Total Characters</p>
+          </li>
+
+          <li class="stat-card stat-card-words">
+            <p class="stat-number">39</p>
+            <p class="stat-label">Word Count</p>
+          </li>
+
+          <li class="stat-card stat-card-sentences">
+            <p class="stat-number">04</p>
+            <p class="stat-label">Sentence Count</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="density" aria-labelledby="density-title">
+        <h2 id="density-title">Letter Density</h2>
+
+        <ul class="density-list">
+          <li class="density-row">
+            <span>E</span>
+            <span class="density-bar" aria-hidden="true"><span class="density-fill" style="width: 16.06%"></span></span>
+            <span class="density-value">40 (16.06%)</span>
+          </li>
+          <li class="density-row">
+            <span>I</span>
+            <span class="density-bar" aria-hidden="true"><span class="density-fill" style="width: 11.65%"></span></span>
+            <span class="density-value">29 (11.65%)</span>
+          </li>
+          <li class="density-row">
+            <span>T</span>
+            <span class="density-bar" aria-hidden="true"><span class="density-fill" style="width: 11.24%"></span></span>
+            <span class="density-value">28 (11.24%)</span>
+          </li>
+          <li class="density-row">
+            <span>O</span>
+            <span class="density-bar" aria-hidden="true"><span class="density-fill" style="width: 8.84%"></span></span>
+            <span class="density-value">22 (8.84%)</span>
+          </li>
+          <li class="density-row">
+            <span>N</span>
+            <span class="density-bar" aria-hidden="true"><span class="density-fill" style="width: 8.43%"></span></span>
+            <span class="density-value">21 (8.43%)</span>
+          </li>
+        </ul>
+
+        <button
+          type="button"
+          class="see-more"
+        >
+          <span>See more</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+            <path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
